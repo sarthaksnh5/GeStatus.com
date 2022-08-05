@@ -1,0 +1,908 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Machine</title>
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/datepicker3.css' %}" rel="stylesheet">
+	<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/417aa940ea.js" crossorigin="anonymous"></script>
+	
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#"><span>GESTATUS</span>.COM</a>
+				<ul class="nav navbar-top-links navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+						<em class="fa fa-envelope"></em><span class="label label-danger">NO</span>
+					</a>
+						<ul class="dropdown-menu dropdown-messages">
+							<li>
+								
+							</li>
+							<li class="divider"></li>
+							<li>
+								
+							</li>
+							<li class="divider"></li>
+							
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+						<em class="fa fa-bell"></em><span class="label label-info">No</span>
+					</a>
+						<ul class="dropdown-menu dropdown-alerts">
+							
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">{{ request.user.username }}</div>
+				
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>		
+		<ul class="nav menu">
+			<li><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>			
+			<li><a href="{% url 'logout' %}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#">
+					<em class="fa fa-home"></em>
+				</a></li>
+				<li class="active">Dashboard</li>
+			</ol>
+		</div><!--/.row-->
+		
+		<div class="row">
+			<div class="col-lg-10">
+				<h1 class="page-header">Dashboard</h1>
+			</div>
+		</div><!--/.row-->
+
+		<div class="panel panel-container">
+			<div class="row">
+				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
+					<div class="panel panel-teal panel-widget border-right">
+						<div class="row no-padding"><em class="fas fa-xl fa-map-marker-alt color-blue"></em>
+							<div class="large">00.000, 00.000</div>
+							<div class="text-muted">Location</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
+					<div class="panel panel-blue panel-widget border-right">
+						<div class="row no-padding"><em class="far fa-xl fa-id-card color-orange"></em>
+							<div class="large">{{ mac.genset_no }}</div>
+							<div class="text-muted">Genset ID</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
+					<div class="panel panel-orange panel-widget border-right">
+						<div class="row no-padding"><em class="fas fa-xl fa-database color-teal"></em>
+							<div class="large">5</div>
+							<div class="text-muted">Data Frequency</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
+					<div class="panel panel-red panel-widget border-right">
+						<div class="row no-padding"><em class="fas fa-xl fa-tablet-alt color-red"></em>
+							<div class="large">TEC-9900 C</div>
+							<div class="text-muted">Controller Model</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
+					<div class="panel panel-red panel-widget border-right">
+						<div class="row no-padding"><em class="fab fa-xl fa-vuejs color-red"></em>
+							<div class="large">45.00</div>
+							<div class="text-muted">Genset KVA</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
+					<div class="panel panel-red panel-widget ">
+						<div class="row no-padding"><em class="fas fa-xl fa-power-off color-red"></em>
+							<div class="large">3</div>
+							<div class="text-muted">Phase</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.row-->
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Service Parameters
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Mains
+									</div>
+									<div class="col-xs-6">
+										0.05
+									</div>
+									<div class="col-xs-2">
+										kWh
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Run Hours
+									</div>
+									<div class="col-xs-6">
+										1109.01
+									</div>
+									<div class="col-xs-2">
+										Hrs
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Service Hours
+									</div>
+									<div class="col-xs-6">
+										1109.01
+									</div>
+									<div class="col-xs-2">
+										Hrs
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Genset Status
+									</div>
+									<div class="col-xs-6">
+										No communication
+									</div>
+									<div class="col-xs-2">
+										
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Generator Parameters
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										DG
+									</div>
+									<div class="col-xs-6">
+										1851.51
+									</div>
+									<div class="col-xs-2">
+										kWh
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Alternator
+									</div>
+									<div class="col-xs-6">
+										NA
+									</div>
+									<div class="col-xs-2">
+										Volt
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Battery
+									</div>
+									<div class="col-xs-6">
+										12.11
+									</div>
+									<div class="col-xs-2">
+										Volt
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										GPS
+									</div>
+									<div class="col-xs-6">
+										00.000, 00.000
+									</div>
+									<div class="col-xs-2">
+										
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Engine Parameters
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										RPM
+									</div>
+									<div class="col-xs-6">
+										1200
+									</div>
+									<div class="col-xs-2">
+										
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Oil Pressure
+									</div>
+									<div class="col-xs-6">
+										2.7
+									</div>
+									<div class="col-xs-2">
+										Bar
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Temperature 
+									</div>
+									<div class="col-xs-6">
+										Ok
+									</div>
+									<div class="col-xs-2">
+										C
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="col-xs-12">								
+								<div class="row">
+									<div class="col-xs-4">
+										Fuel
+									</div>
+									<div class="col-xs-6">
+										054
+									</div>
+									<div class="col-xs-2">
+										%
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>												
+					</div>
+					
+				</div>
+			</div>			
+		</div>
+
+
+		
+		{% comment %} <div class="panel panel-container">
+			<div class="row">
+				<div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>Main Frequency</h4>
+                            <div class="easypiechart" id="easypiechart-blue" data-percent="100" ><span class="percent">{{ vi.vr }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>L1NVolt</h4>
+                            <div class="easypiechart" id="easypiechart-orange" data-percent="100" ><span class="percent">{{ vi.vy }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>L2NVolt</h4>
+                            <div class="easypiechart" id="easypiechart-teal" data-percent="100" ><span class="percent">{{ vi.vb }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>L3NVolt</h4>
+                            <div class="easypiechart" id="easypiechart-red" data-percent="100}" ><span class="percent">{{ vi.vry }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>G1NVolt</h4>
+                            <div class="easypiechart" id="easypiechart-yellow" data-percent="100" ><span class="percent">{{ vi.ir }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>G2NVolt</h4>
+                            <div class="easypiechart" id="easypiechart-green" data-percent="100" ><span class="percent">{{ vi.iy }}</span></div>
+                        </div>
+                    </div>
+                </div>
+        	</div><!--/.row-->
+			<div class="row">
+				<div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>G3NVolt</h4>
+                            <div class="easypiechart" id="easypiechart-grey" data-percent="100" ><span class="percent">{{ vi.ib }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>G1Cur</h4>
+                            <div class="easypiechart" id="easypiechart-pink" data-percent="100" ><span class="percent">{{ vi.pf }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>G2Curr</h4>
+                            <div class="easypiechart" id="easypiechart-magenta" data-percent="100" ><span class="percent">{{ vi.power }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>G3Curr</h4>
+                            <div class="easypiechart" id="easypiechart-brown" data-percent="100" ><span class="percent">{{ vi.kwh }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>CTemp</h4>
+                            <div class="easypiechart" id="easypiechart-black" data-percent="100"><span class="percent">{{ vi.trhr }}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>Batt</h4>
+                            <div class="easypiechart" id="easypiechart-navyBlue" data-percent="100"><span class="percent">{{ vi.vbr }}</span></div>
+                        </div>
+                    </div>
+                </div>
+        	</div><!--/.row-->
+			<div class="row">
+				<div class="col-xs-6 col-md-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body easypiechart-panel">
+                            <h4>KWOVL</h4>
+                            <div class="easypiechart" id="easypiechart-sea" data-percent="100" ><span class="percent">{{ vi.vyb }}</span></div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div> {% endcomment %}
+
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Faults						
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+                    </div>
+					<div class="panel-body">						
+                        <div class="article border-bottom">
+							<div class="col-xs-12">
+								<div class="row">
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">Voltage</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">RWL</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">RPM/Hz</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">Emergency</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>								
+						</div>					
+					</div>
+					<div class="panel-body">						
+                        <div class="article border-bottom">
+							<div class="col-xs-12">
+								<div class="row">
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">Current</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">Canopy</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">LLOP</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">Battery</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>								
+						</div>					
+					</div>
+					<div class="panel-body">						
+                        <div class="article border-bottom">
+							<div class="col-xs-12">
+								<div class="row">
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">HCT</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">START/STOP</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">LFL</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">FAN</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>								
+						</div>					
+					</div>
+					<div class="panel-body">						
+                        <div class="article border-bottom">
+							<div class="col-xs-12">
+								<div class="row">
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">V-BELT/CHG.ALT </div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">Unbalanced Load</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">Door Open</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="row">
+											<div class="col-xs-1"><i class="far fa-dot-circle"></i></div>
+											<div class="col-xs-11">Service Due</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="clear"></div>								
+						</div>					
+					</div>					
+				</div>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						RPM						
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+                    </div>
+					<div class="panel-body">
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-md-3">
+									<canvas class="main-chart" id="rpm-gauge"></canvas>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Oil Pressure						
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+                    </div>
+					<div class="panel-body">
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-md-3">
+									<canvas class="main-chart" id="oil-gauge"></canvas>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Fuel						
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+                    </div>
+					<div class="panel-body">
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-md-3">
+									<canvas class="main-chart" id="fuel-gauge"></canvas>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						XYZ						
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+                    </div>
+					<div class="panel-body">
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-md-3">
+									<canvas class="main-chart" id="xyz-gauge"></canvas>
+								</div>
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Device Data With Last 10 Entries						
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span>
+                    </div>
+
+					<div class="panel-body">
+						<div class="col-xs-12">
+							<div class="row">
+								<div class="col-xs-1">
+									<button class="btn btn-primary">CSV</button>
+								</div>
+								<div class="col-xs-1">
+									<button class="btn btn-primary">Excel</button>
+								</div>
+								<div class="col-xs-1">
+									<button class="btn btn-primary">Print</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="col-xs-12">
+							<div class="table-responsive">
+								<table class="table w-auto">
+									<thead>
+										<td scole="col">Sr. No.</td>
+										<td scope="col">Date</td>
+										<td scope="col">Time</td>
+										<td scope="col">Run Hour</td>
+										<td scope="col">Service Hour</td>
+										<td scope="col">Main Voltage_R</td>
+										<td scope="col">Main Voltage_Y</td>
+										<td scope="col">Main Voltage_B</td>
+										<td scope="col">DG Voltage_R</td>
+										<td scope="col">DG Voltage_Y</td>
+										<td scope="col">DG Voltage_B</td>
+										<td scope="col">Main Voltage_RY</td>
+										<td scope="col">Main Voltage_YB</td>
+										<td scope="col">Main Voltage_BR</td>
+										<td scope="col">DG Voltage_RY</td>
+										<td scope="col">DG Voltage_YB</td>
+										<td scope="col">DG Voltage_BR</td>
+										<td scope="col">Ampere_R</td>
+										<td scope="col">Ampere_Y</td>
+										<td scope="col">Ampere_B</td>
+										<td scope="col">Power Factor Combined</td>
+										<td scope="col">Power Factor_R</td>
+										<td scope="col">Power Factor_Y</td>
+										<td scope="col">Power Factor_B</td>
+										<td scope="col">Active Power Combined</td>
+										<td scope="col">Active Power_R</td>
+										<td scope="col">Active Power_Y</td>
+										<td scope="col">Active Power_B</td>
+									</thead>
+									<tbody>
+										{% for mac in vi %}
+											<tr>
+												<td>{{ forloop.counter }}
+												<td>{{mac.created}}</td>
+												<td>{{mac.time_at}}
+												<td>{{mac.rh }}</td>
+												<td>{{mac.sh }}</td>
+												<td>{{mac.vr }}</td>
+												<td>{{mac.vy }}</td>
+												<td>{{mac.vb }}</td>
+												<td>{{mac.vry }}</td>
+												<td>{{mac.vyb }}</td>
+												<td>{{mac.vbr }}</td>
+												<td>{{mac.dgr }}</td>
+												<td>{{mac.dgy }}</td>
+												<td>{{mac.dgb }}</td>
+												<td>{{mac.dgry }}</td>
+												<td>{{mac.dgyb }}</td>
+												<td>{{mac.dgbr }}</td>
+												<td>{{mac.ir }}</td>
+												<td>{{mac.iy }}</td>
+												<td>{{mac.ib }}</td>
+												<td>{{mac.pf }}</td>
+												<td>{{mac.powr }}</td>
+												<td>{{mac.powy }}</td>
+												<td>{{mac.powb }}</td>
+												<td>{{mac.apc }}</td>
+												<td>{{mac.apr }}</td>
+												<td>{{mac.apy }}</td>
+												<td>{{mac.apb }}</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+									<ul class="pagination">
+										{% if vi.has_previous %}
+										<li><a href="?page={{ vi.previous_page_number }}">&laquo;</a></li>
+										{% else %}
+										<li class="disabled"><span>&laquo;</span></li>
+										{% endif %}
+										{% for i in vi.paginator.page_range %}
+										{% if vi.number == i %}
+											<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+										{% else %}
+											<li><a href="?page={{ i }}">{{ i }}</a></li>
+										{% endif %}
+										{% endfor %}
+										{% if vi.has_next %}
+										<li><a href="?page={{ vi.next_page_number }}">&raquo;</a></li>
+										{% else %}
+										<li class="disabled"><span>&raquo;</span></li>
+										{% endif %}
+									</ul>
+								</table>
+							</div>
+						</div>
+					</div>										
+				</div>
+			</div>
+		</div><!--/.row-->
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Specific Data Overview 						
+						<span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-up"></em></span></div>
+					<div class="panel-body">
+						<div class="article border-bottom">
+							<div class="row">
+								<div class="col-xs-3">
+									<div class="form-group">
+										<select name="dataType" id="dataType" class="form-control">
+											<option value='rh'>Run Hour</option>
+											<option value='sh'>Service Hour</option>
+											<option value='vr'>Main Voltage_R</option>
+											<option value='vy'>Main Voltage_Y</option>
+											<option value='vb'>Main Voltage_B</option>
+											<option value='vry'>Main Voltage_RY</option>
+											<option value='vyb'>Main Voltage_YB</option>
+											<option value='vbr'>Main Voltage_BR</option>
+											<option value='dgr'>DG Voltage_R</option>
+											<option value='dgy'>DG Voltage_Y</option>
+											<option value='dgb'>DG Voltage_B</option>
+											<option value='dgry'>DG Voltage_RY</option>
+											<option value='dgyb'>DG Voltage_YB</option>
+											<option value='dgbr'>DG Voltage_BR</option>
+											<option value='ir'>Ampere_R</option>
+											<option value='iy'>Ampere_Y</option>
+											<option value='ib'>Ampere_B</option>
+											<option value='pf'>Power Factor Combined</option>
+											<option value='powr'>Power Factor_R</option>
+											<option value='powy'>Power Factor_Y</option>
+											<option value='powb'>Power Factor_B</option>
+											<option value='apc'>Active Power Combined</option>
+											<option value='apr'>Active Power_R</option>
+											<option value='apy'>Active Power_Y</option>
+											<option value='apb'>Active Power_B</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-xs-3">
+									<input type="date" name="startDate" id="startDate" class="form-control">
+								</div>
+								<div class="col-xs-3">
+									<input type="date" name="endDate" id="endDate" class="form-control">
+								</div>
+								<div class="col-xs-3">
+									<button class="btn btn-success" onClick="getMacData('{{ mac.id }}')">Submit</button>
+								</div>
+								
+							</div>
+						</div>
+						<div class="canvas-wrapper">
+							<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+
+
+		
+		<!--/.row-->
+	</div>	<!--/.main-->
+	
+	<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/chart.min.js' %}"></script>
+	<script src="{% static 'js/chart-data.js' %}"></script>
+	<script src="{% static 'js/easypiechart.js' %}"></script>
+	<script src="{% static 'js/easypiechart-data.js' %}"></script>
+	<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+	<script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+	<script src="{% static 'js/custom.js' %}"></script>	
+</body>
+</html>
