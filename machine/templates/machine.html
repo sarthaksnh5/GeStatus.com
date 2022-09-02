@@ -149,9 +149,9 @@
 												</td> {% endcomment %}
 												<td> 
 												{% if da.status %} 
-													<i class="far fa-dot-circle" style="font-size:35px;color:#0f0"></i>
-												{% else %}
 													<i class="far fa-dot-circle" style="font-size:35px;color:#f00"></i>
+												{% else %}
+													<i class="far fa-dot-circle" style="font-size:35px;color:#0f0"></i>
 												{% endif %}
 												</td>
 												<td>{{ da.deviceno }}</td>
@@ -160,23 +160,23 @@
 												<td>{{ da.time_at }}</td>
 												<td>
 												{% if da.low_oil %} 
-													<i class="far fa-dot-circle" style="font-size:35px;color:#0f0"></i>
-												{% else %}
 													<i class="far fa-dot-circle" style="font-size:35px;color:#f00"></i>
+												{% else %}
+													<i class="far fa-dot-circle" style="font-size:35px;color:#0f0"></i>
 												{% endif %}
 												</td>
 												<td>
 												{% if da.high_engine %} 
-													<i class="far fa-dot-circle" style="font-size:35px;color:#0f0"></i>
-												{% else %}
 													<i class="far fa-dot-circle" style="font-size:35px;color:#f00"></i>
+												{% else %}
+													<i class="far fa-dot-circle" style="font-size:35px;color:#0f0"></i>
 												{% endif %}
 												</td>
 												<td>
 												{% if da.low_fuel %} 
-													<i class="far fa-dot-circle" style="font-size:35px;color:#0f0"></i>
-												{% else %}
 													<i class="far fa-dot-circle" style="font-size:35px;color:#f00"></i>
+												{% else %}
+													<i class="far fa-dot-circle" style="font-size:35px;color:#0f0"></i>
 												{% endif %}
 												</td>
 												<td><a class="btn btn-primary" href="{% url 'singleMachine' da.id %}">More Details</a></td>

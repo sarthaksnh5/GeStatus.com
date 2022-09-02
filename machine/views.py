@@ -23,9 +23,12 @@ def registerMachine(request):
         deviceno = request.POST['deviceno']
         gensetno = request.POST['gensetno']
         location = request.POST['location']
+        machine_kv = request.POST['machinekv']
+        machine_phase = request.POST['machinephase']
 
         newForm = MachineUser(user=newUser, deviceno=deviceno,
-                              genset_no=gensetno, location=location)
+                              genset_no=gensetno, location=location,
+                              machine_kv=machine_kv, machine_phase=machine_phase)
         newForm.save()
         return redirect('base')
 

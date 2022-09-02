@@ -64,7 +64,7 @@
 		</div>
 		<div class="divider"></div>		
 		<ul class="nav menu">
-			<li><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>			
+			<li><a href="{% url 'base' %}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>			
 			<li><a href="{% url 'logout' %}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
 	</div><!--/.sidebar-->
@@ -90,7 +90,7 @@
 				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
 					<div class="panel panel-teal panel-widget border-right">
 						<div class="row no-padding"><em class="fas fa-xl fa-map-marker-alt color-blue"></em>
-							<div class="large">00.000, 00.000</div>
+							<div class="large">{{mac.location}}</div>
 							<div class="text-muted">Location</div>
 						</div>
 					</div>
@@ -122,7 +122,7 @@
 				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
 					<div class="panel panel-red panel-widget border-right">
 						<div class="row no-padding"><em class="fab fa-xl fa-vuejs color-red"></em>
-							<div class="large">45.00</div>
+							<div class="large">{{mac.machine_kv}}</div>
 							<div class="text-muted">Genset KVA</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@
 				<div class="col-xs-6 col-md-2 col-lg-2 no-padding">
 					<div class="panel panel-red panel-widget ">
 						<div class="row no-padding"><em class="fas fa-xl fa-power-off color-red"></em>
-							<div class="large">3</div>
+							<div class="large">{{mac.machine_phase}}</div>
 							<div class="text-muted">Phase</div>
 						</div>
 					</div>
@@ -152,7 +152,7 @@
 										Mains
 									</div>
 									<div class="col-xs-6">
-										0.05
+										{{uiData.mains}}
 									</div>
 									<div class="col-xs-2">
 										kWh
@@ -170,7 +170,7 @@
 										Run Hours
 									</div>
 									<div class="col-xs-6">
-										1109.01
+										{{uiData.run_hour}}
 									</div>
 									<div class="col-xs-2">
 										Hrs
@@ -188,7 +188,7 @@
 										Service Hours
 									</div>
 									<div class="col-xs-6">
-										1109.01
+										{{uiData.run_hour}}
 									</div>
 									<div class="col-xs-2">
 										Hrs
@@ -206,7 +206,7 @@
 										Genset Status
 									</div>
 									<div class="col-xs-6">
-										No communication
+										Communicating
 									</div>
 									<div class="col-xs-2">
 										
@@ -232,7 +232,7 @@
 										DG
 									</div>
 									<div class="col-xs-6">
-										1851.51
+										{{uiData.dg_kwh}}
 									</div>
 									<div class="col-xs-2">
 										kWh
@@ -247,10 +247,10 @@
 							<div class="col-xs-12">								
 								<div class="row">
 									<div class="col-xs-4">
-										Alternator
+										Voltage
 									</div>
 									<div class="col-xs-6">
-										NA
+										{{uiData.voltage}}
 									</div>
 									<div class="col-xs-2">
 										Volt
@@ -268,7 +268,7 @@
 										Battery
 									</div>
 									<div class="col-xs-6">
-										12.11
+										{{uiData.battery}}
 									</div>
 									<div class="col-xs-2">
 										Volt
@@ -312,7 +312,7 @@
 										RPM
 									</div>
 									<div class="col-xs-6">
-										1200
+										{{uiData.rpm}}
 									</div>
 									<div class="col-xs-2">
 										
@@ -330,7 +330,7 @@
 										Oil Pressure
 									</div>
 									<div class="col-xs-6">
-										2.7
+										{{uiData.oilTemp}}
 									</div>
 									<div class="col-xs-2">
 										Bar
@@ -348,7 +348,7 @@
 										Temperature 
 									</div>
 									<div class="col-xs-6">
-										Ok
+										{{uiData.temperature}}
 									</div>
 									<div class="col-xs-2">
 										C
@@ -366,7 +366,7 @@
 										Fuel
 									</div>
 									<div class="col-xs-6">
-										054
+										{{uiData.fuel}}
 									</div>
 									<div class="col-xs-2">
 										%
@@ -743,31 +743,31 @@
 										<td scole="col">Sr. No.</td>
 										<td scope="col">Date</td>
 										<td scope="col">Time</td>
-										<td scope="col">Run Hour</td>
-										<td scope="col">Service Hour</td>
-										<td scope="col">Main Voltage_R</td>
-										<td scope="col">Main Voltage_Y</td>
-										<td scope="col">Main Voltage_B</td>
-										<td scope="col">DG Voltage_R</td>
-										<td scope="col">DG Voltage_Y</td>
-										<td scope="col">DG Voltage_B</td>
-										<td scope="col">Main Voltage_RY</td>
-										<td scope="col">Main Voltage_YB</td>
-										<td scope="col">Main Voltage_BR</td>
-										<td scope="col">DG Voltage_RY</td>
-										<td scope="col">DG Voltage_YB</td>
-										<td scope="col">DG Voltage_BR</td>
-										<td scope="col">Ampere_R</td>
-										<td scope="col">Ampere_Y</td>
-										<td scope="col">Ampere_B</td>
-										<td scope="col">Power Factor Combined</td>
-										<td scope="col">Power Factor_R</td>
-										<td scope="col">Power Factor_Y</td>
-										<td scope="col">Power Factor_B</td>
-										<td scope="col">Active Power Combined</td>
-										<td scope="col">Active Power_R</td>
-										<td scope="col">Active Power_Y</td>
-										<td scope="col">Active Power_B</td>
+										<td scope="col">Generator Frequency</td>
+										<td scope="col">G1 Voltage</td>
+										<td scope="col">G2 Voltage</td>
+										<td scope="col">G3 Voltage</td>
+										<td scope="col">G1 Current</td>
+										<td scope="col">G2 Current</td>
+										<td scope="col">G3 Current</td>
+										<td scope="col">G1 Power</td>
+										<td scope="col">G2 Power</td>
+										<td scope="col">G3 Power</td>
+										<td scope="col">Main Frequency</td>
+										<td scope="col">Main L1 Voltage</td>
+										<td scope="col">Main L2 Voltage</td>
+										<td scope="col">Main L3 Voltage</td>
+										<td scope="col">Main L1 Current</td>
+										<td scope="col">Main L2 Current</td>
+										<td scope="col">Main L3 Current</td>
+										<td scope="col">Main L1 Power</td>
+										<td scope="col">Main L2 Power</td>
+										<td scope="col">Main L3 Power</td>
+										<td scope="col">Genset Frequency 1</td>
+										<td scope="col">Genset Frequency 2</td>
+										<td scope="col">Genset Frequency 3</td>
+										<td scope="col">Average Frequency</td>
+										<td scope="col">Genset K</td>										
 									</thead>
 									<tbody>
 										{% for mac in vi %}
@@ -775,31 +775,31 @@
 												<td>{{ forloop.counter }}
 												<td>{{mac.created}}</td>
 												<td>{{mac.time_at}}
-												<td>{{mac.rh }}</td>
-												<td>{{mac.sh }}</td>
-												<td>{{mac.vr }}</td>
-												<td>{{mac.vy }}</td>
-												<td>{{mac.vb }}</td>
-												<td>{{mac.vry }}</td>
-												<td>{{mac.vyb }}</td>
-												<td>{{mac.vbr }}</td>
-												<td>{{mac.dgr }}</td>
-												<td>{{mac.dgy }}</td>
-												<td>{{mac.dgb }}</td>
-												<td>{{mac.dgry }}</td>
-												<td>{{mac.dgyb }}</td>
-												<td>{{mac.dgbr }}</td>
-												<td>{{mac.ir }}</td>
-												<td>{{mac.iy }}</td>
-												<td>{{mac.ib }}</td>
-												<td>{{mac.pf }}</td>
-												<td>{{mac.powr }}</td>
-												<td>{{mac.powy }}</td>
-												<td>{{mac.powb }}</td>
-												<td>{{mac.apc }}</td>
-												<td>{{mac.apr }}</td>
-												<td>{{mac.apy }}</td>
-												<td>{{mac.apb }}</td>
+												<td>{{ mac.gen_freq}}</td>
+												<td>{{ mac.g1nvolt}}</td>
+												<td>{{ mac.g2nvolt}}</td>
+												<td>{{ mac.g3nvolt}}</td>
+												<td>{{ mac.G1Curr}}</td>
+												<td>{{ mac.G2Curr}}</td>
+												<td>{{ mac.G3Curr}}</td>
+												<td>{{ mac.G1Watt}}</td>
+												<td>{{ mac.G2Watt}}</td>
+												<td>{{ mac.G3Watt}}</td>
+												<td>{{ mac.mainFreq}}</td>
+												<td>{{ mac.MainL1NVolt}}</td>
+												<td>{{ mac.MainL2NVolt}}</td>
+												<td>{{ mac.MainL3NVolt}}</td>
+												<td>{{ mac.Main1Curr}}</td>
+												<td>{{ mac.Main2Curr}}</td>
+												<td>{{ mac.Main3Curr}}</td>
+												<td>{{ mac.Main1Watt}}</td>
+												<td>{{ mac.Main2Watt}}</td>
+												<td>{{ mac.Main3Watt}}</td>
+												<td>{{ mac.genpf1}}</td>
+												<td>{{ mac.genpf2}}</td>
+												<td>{{ mac.genpf3}}</td>
+												<td>{{ mac.avggenpf}}</td>
+												<td>{{ mac.genkvar}}</td>
 											</tr>
 										{% endfor %}
 									</tbody>
@@ -830,7 +830,7 @@
 			</div>
 		</div><!--/.row-->
 
-		<div class="row">
+		<!--<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -888,7 +888,7 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->
+		</div>/.row-->
 
 
 		
@@ -904,5 +904,65 @@
 	<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
 	<script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
 	<script src="{% static 'js/custom.js' %}"></script>	
+	<script>
+		var opts = {
+  angle: -0.19, // The span of the gauge arc
+  lineWidth: 0.2, // The line thickness
+  radiusScale: 1, // Relative radius
+  pointer: {
+    length: 0.56, // // Relative to gauge radius
+    strokeWidth: 0.033, // The thickness
+    color: "#000000", // Fill color
+  },
+  staticZones: [
+    { strokeStyle: "#F03E3E", min: 0, max: 300 }, // Red from 100 to 130
+    { strokeStyle: "#FFDD00", min: 300, max: 600 }, // Yellow
+    { strokeStyle: "#30B32D", min: 600, max: 1800 }, // Green
+    { strokeStyle: "#FFDD00", min: 1800, max: 2400 }, // Yellow
+    { strokeStyle: "#F03E3E", min: 2400, max: 3000 }, // Red
+  ],
+  staticLabels: {
+    font: "10px sans-serif", // Specifies font
+    labels: [0, 300, 600, 1800, 2400, 3000], // Print labels at these values
+    color: "#000000", // Optional: Label text color
+    fractionDigits: 0, // Optional: Numerical precision. 0=round off.
+  },
+  limitMax: false, // If false, max value increases automatically if value > maxValue
+  limitMin: false, // If true, the min value of the gauge will be fixed
+  colorStart: "#6FADCF", // Colors
+  colorStop: "#8FC0DA", // just experiment with them
+  strokeColor: "#E0E0E0", // to see which ones work best for you
+  generateGradient: true,
+  highDpiSupport: true, // High resolution support
+};
+
+var target = document.getElementById("rpm-gauge"); // your canvas element
+var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+gauge.maxValue = 3000; // set max gauge value
+gauge.setMinValue(0); // Prefer setter over gauge.minValue = 0
+gauge.animationSpeed = 22; // set animation speed (32 is default value)
+gauge.set(975); // set actual value
+
+var target = document.getElementById("oil-gauge"); // your canvas element
+var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+gauge.maxValue = 3000; // set max gauge value
+gauge.setMinValue(0); // Prefer setter over gauge.minValue = 0
+gauge.animationSpeed = 22; // set animation speed (32 is default value)
+gauge.set(500); // set actual value
+
+var target = document.getElementById("fuel-gauge"); // your canvas element
+var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+gauge.maxValue = 3000; // set max gauge value
+gauge.setMinValue(0); // Prefer setter over gauge.minValue = 0
+gauge.animationSpeed = 22; // set animation speed (32 is default value)
+gauge.set(1500); // set actual value
+
+var target = document.getElementById("xyz-gauge"); // your canvas element
+var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+gauge.maxValue = 3000; // set max gauge value
+gauge.setMinValue(0); // Prefer setter over gauge.minValue = 0
+gauge.animationSpeed = 22; // set animation speed (32 is default value)
+gauge.set(1500); // set actual value
+	</script>
 </body>
 </html>
