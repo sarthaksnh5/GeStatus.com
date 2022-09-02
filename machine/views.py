@@ -1,7 +1,6 @@
 from django.http.response import HttpResponse
 from machine.models import MachineUser, machineVI, uiElement
 from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
 import json
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -48,7 +47,7 @@ def machineDetails(request, pk):
         viDatad = ""
 
     try:
-        uiData = uiElement.objects.filter(mac_id=pk)
+        uiData = uiElement.objects.filter(mac_id=pk).last()
     except:
         uiData = ""
 
@@ -69,14 +68,12 @@ def machineData(request):
     if request.method == "POST":
         data = request.body.decode("utf-8")
         jsonData = json.loads(data)
-        print("Mach id: ")
-        print(jsonData["mach_id"])
+
         try:
             machineVI.objects.get(mac_id = jsonData["mach_id"])
             getData = 1
         except:
             getData = 0
-        print(getData)
 
         if getData:
             machineVI.objects.filter(mac_id=jsonData["mach_id"]).update(

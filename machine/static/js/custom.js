@@ -30,7 +30,9 @@ let cho = 1;
 
 function changecolor() {
   var da = document.getElementsByClassName("far fa-dot-circle");
-  da[i].style.color = "#0f0";
+  for (let i = 0; i < da.length; i++) {
+    da[i].style.color = "#0f0";
+  }
   // if(cho == 1){
   // 	for(let i = 0; i < da.length; i++){
   // 		da[i].style.color = "#f00";
@@ -51,7 +53,7 @@ function changecolor() {
   // }
 }
 
-//setInterval(changecolor, 500);
+// setInterval(changecolor, 500);
 changecolor();
 
 function getMacData(mac_id) {
@@ -116,5 +118,3 @@ function getMacData(mac_id) {
 
   xmlhttp.send();
 }
-
-
